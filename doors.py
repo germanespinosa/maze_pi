@@ -7,8 +7,7 @@ class Doors:
     def __init__(self):
         self.neutral_values = []
         self.directions = []
-        self.opening_time = []
-        self.closing_time = []
+
         self.door_open = []
         self.detected = []
 
@@ -18,17 +17,28 @@ class Doors:
             self.door_open.append(False)
             self.no_move(dn)
 
+    def oc10(self, door, c):
+        for i in range(c):
+            self.open_door(door)
+            self.close_door(door)
+
 
     def open_door(self, door):
+        if self.door_open[door]:
+            return
         self.kit.continuous_servo[door].throttle = -.5 * self.directions[door] + self.neutral_values[door]
         sleep(self.opening_time[door])
         self.kit.continuous_servo[door].throttle = self.neutral_values[door]
+        self.door_open[door] = True;
         sleep(.2)
 
     def close_door(self, door):
+        if not self.door_open[door]:
+            return
         self.kit.continuous_servo[door].throttle = 0.5 * self.directions[door] + self.neutral_values[door]
         sleep(self.closing_time[door])
         self.kit.continuous_servo[door].throttle = self.neutral_values[door]
+        self.door_open[door] = False;
         sleep(.2)
 
     def door_feed (self, door, value):
@@ -100,6 +110,8 @@ class Doors:
         return status
 
     def load_calibration(self):
+        self.opening_time = []
+        self.closing_time = []
         for dn in range(4):
             cal_file_name = "door%d.cal" % dn
             if path.exists(cal_file_name):

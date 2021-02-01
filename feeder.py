@@ -46,7 +46,7 @@ class Feeder:
 
     def report_feeder(self):
       uri = "http://192.168.137.1"
-      uri += ":8081/feeder/" + str(self.number)
+      uri += ":8081/feeder_reached/" + str(self.number)
       response = requests.get(uri)
 
     def feed(self, feeding_time=None):

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /home/pi
-python3 /home/pi/maze-terminal.py 8081 &
+python3 /home/pi/maze_pi/maze-terminal.py 8081 &

@@ -40,7 +40,6 @@ class maze_terminal:
         elif command == "close":
             door_number = int(querystring.split("/")[1])
             if doors.door_open[door_number]:
-                doors.door_open[door_number] = False
                 doors.close_door(door_number)
                 response = {"code": 0, "message": "door closed"}
                 return json.dumps(response)
@@ -49,7 +48,6 @@ class maze_terminal:
         elif command == "open":
             door_number = int(querystring.split("/")[1])
             if not doors.door_open[door_number]:
-                doors.door_open[door_number] = True
                 doors.open_door(door_number)
                 response = {"code": 0, "message": "door opened"}
                 return json.dumps(response)

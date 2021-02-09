@@ -27,9 +27,17 @@ feeder = LED(27)
 #     feeder.off()
 #     sleep(1)
 
-for i in range(100):
+# for i in range(100):
+#     print(i)
+#     feeder.on()
+#     sleep(.015)
+#     feeder.off()
+#     sleep(5)
+#
+
+for i in range(2):
     print(i)
     feeder.on()
-    sleep(.015)
+    sleep(1)
     feeder.off()
-    sleep(5)
+    sleep(1)
